@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Get in touch with Mike Gushansky for bookings, collaborations, or photography inquiries.">
+  <meta property="og:title" content="Mike Gushansky — DJ & Photographer">
+  <meta property="og:description" content="Music and photography by Mike Gushansky.">
+  <title>Mike Gushansky — Contact</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="top-nav">
+    <a href="index.html" class="top-nav__logo">Mike Gushansky</a>
+    <div class="top-nav__links">
+      <a href="photos.html" class="top-nav__link">Photos</a>
+      <a href="sounds.html" class="top-nav__link">Sounds</a>
+      <a href="me.html" class="top-nav__link">Me</a>
+      <a href="contact.html" class="top-nav__link top-nav__link--active">Contact</a>
+    </div>
+    <button class="hamburger" aria-label="Menu">
+      <span class="hamburger__line"></span>
+      <span class="hamburger__line"></span>
+      <span class="hamburger__line"></span>
+    </button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <a href="photos.html" class="mobile-menu__link">Photos</a>
+    <a href="sounds.html" class="mobile-menu__link">Sounds</a>
+    <a href="me.html" class="mobile-menu__link">Me</a>
+    <a href="contact.html" class="mobile-menu__link mobile-menu__link--active">Contact</a>
+  </div>
+
+  <div class="page-body">
+    <main>
+
+      <div class="content-wrap">
+        <header class="page-header fade-in">
+          <h1 class="page-header__title">Get in Touch</h1>
+          <p class="page-header__tagline">For bookings, collaborations, or just to say hello.</p>
+        </header>
+      </div>
+
+      <div class="content-wrap">
+        <div class="contact-form-wrap fade-in">
+
+          <!-- Netlify handles this form for free — no backend needed. Submissions appear in your Netlify dashboard. -->
+          <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify>
+            <input type="hidden" name="form-name" value="contact">
+            <input type="text" name="name" placeholder="Your name" required>
+            <input type="email" name="email" placeholder="your@email.com" required>
+            <select name="subject" required>
+              <option value="" disabled selected>Subject</option>
+              <option value="Booking">Booking</option>
+              <option value="Collaboration">Collaboration</option>
+              <option value="Photography">Photography</option>
+              <option value="Other">Other</option>
+            </select>
+            <textarea name="message" rows="6" placeholder="What's on your mind?" required></textarea>
+            <button type="submit" class="contact-form__submit">Send Message</button>
+          </form>
+
+          <div id="form-success">
+            <p>Thanks! I'll be in touch soon.</p>
+          </div>
+
+          <!-- Social Icons -->
+          <div class="contact-socials">
+            <a href="#" target="_blank" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a href="#" target="_blank" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.13C5.12 19.56 12 19.56 12 19.56s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.43z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+            </a>
+            <a href="#" target="_blank" aria-label="SoundCloud">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M1.175 12.225c-.051 0-.094.046-.101.1l-.233 2.154.233 2.105c.007.058.05.098.101.098.05 0 .09-.04.099-.098l.255-2.105-.27-2.154c-.009-.06-.05-.1-.1-.1m-.899.828c-.06 0-.091.037-.104.094L0 14.479l.172 1.282c.013.06.045.094.104.094.057 0 .09-.038.104-.094l.2-1.282-.2-1.332c-.014-.057-.047-.094-.104-.094m1.8-1.156c-.063 0-.11.05-.116.11l-.213 2.451.213 2.36c.006.063.053.11.116.11.063 0 .109-.047.116-.11l.244-2.36-.244-2.45c-.007-.064-.053-.111-.116-.111m.899-.427c-.073 0-.126.058-.132.125l-.193 2.878.193 2.728c.006.071.059.125.132.125.072 0 .123-.054.132-.125l.217-2.728-.217-2.878c-.009-.067-.06-.125-.132-.125m.9-.235c-.082 0-.14.066-.148.14l-.174 3.113.174 2.86c.008.076.066.14.148.14.08 0 .138-.064.148-.14l.197-2.86-.197-3.113c-.01-.074-.068-.14-.148-.14m.9-.236c-.09 0-.154.073-.16.155l-.155 3.349.155 2.94c.006.084.07.155.16.155.088 0 .152-.071.16-.155l.175-2.94-.175-3.349c-.008-.082-.072-.155-.16-.155m.998-.146c-.1 0-.17.08-.176.168l-.135 3.495.135 2.993c.006.09.076.168.176.168.098 0 .168-.078.176-.168l.154-2.993-.154-3.495c-.008-.088-.078-.168-.176-.168m1.1-.198c-.11 0-.187.09-.193.183l-.117 3.693.117 3.024c.006.098.083.183.193.183.108 0 .183-.085.193-.183l.13-3.024-.13-3.693c-.01-.093-.085-.183-.193-.183m1.098-.134c-.12 0-.2.098-.207.197l-.098 3.827.098 3.05c.007.103.087.197.207.197.118 0 .198-.094.207-.197l.11-3.05-.11-3.827c-.009-.099-.089-.197-.207-.197m1.1-.088c-.13 0-.214.105-.22.21l-.078 3.915.079 3.066c.006.11.09.21.22.21.127 0 .21-.1.22-.21l.088-3.066-.089-3.914c-.009-.106-.092-.211-.22-.211m1.202-.02c-.14 0-.228.116-.234.226l-.063 3.934.064 3.076c.006.116.094.226.234.226.137 0 .225-.11.234-.226l.072-3.076-.072-3.934c-.009-.11-.097-.226-.234-.226m1.2.032c-.148 0-.24.122-.247.238l-.047 3.902.047 3.082c.007.12.1.238.248.238.146 0 .238-.118.247-.238l.053-3.082-.053-3.902c-.009-.116-.101-.238-.247-.238m1.302.05c-.09 0-.168.04-.217.106-.03.04-.047.09-.05.143l-.03 3.747.03 3.074c.004.06.02.11.05.15.05.065.127.107.218.107.088 0 .165-.04.215-.104.032-.04.05-.092.053-.153l.034-3.074-.034-3.747c-.003-.06-.02-.11-.053-.15-.05-.067-.127-.109-.216-.109m2.372-.384c-.193 0-.36.079-.474.21a.62.62 0 0 0-.152.378v.002l-.035 3.822.035 3.05a.627.627 0 0 0 .626.593c.33 0 .604-.252.627-.577v.003l.038-3.069-.038-3.838c-.016-.04-.027-.08-.044-.116a1.1 1.1 0 0 0-.193-.32 1.094 1.094 0 0 0-.39-.278m4.1-.497c-.227-.09-.474-.137-.73-.137-1.12 0-2.028.89-2.058 2.003v.004l-.002 2.588v.002c.03 1.112.938 2.001 2.06 2.001.556 0 1.06-.22 1.43-.578.371-.359.6-.858.6-1.41V13.12c0-1.094-.757-2.012-1.781-2.268m.614 4.678a.835.835 0 0 1-.834.834c-.46 0-.833-.374-.833-.834v-2.41a.834.834 0 0 1 .833-.832c.46 0 .834.372.834.833v2.41z"/></svg>
+            </a>
+            <a href="#" target="_blank" aria-label="Mixcloud">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2.462 8.596C1.1 8.596 0 9.695 0 11.058s1.1 2.462 2.462 2.462c1.362 0 2.462-1.1 2.462-2.462s-1.1-2.462-2.462-2.462zm8.26 0c-1.362 0-2.462 1.1-2.462 2.462s1.1 2.462 2.462 2.462c.993 0 1.847-.587 2.236-1.432h2.066v.986a.493.493 0 0 0 .985 0v-.986h.986a.493.493 0 0 0 0-.985h-.986v-.986a.493.493 0 0 0-.985 0v.986h-2.066c-.389-.845-1.243-1.432-2.236-1.432zm-4.13 1.478a2.448 2.448 0 0 0-.692 1.476h-.001a2.448 2.448 0 0 0 .693 1.476 3.449 3.449 0 0 1-.693-1.476 3.449 3.449 0 0 1 .693-1.476z"/></svg>
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <p class="site-footer__copy">&copy; 2025 Mike Gushansky</p>
+      <div class="site-footer__socials">
+        <a href="#" target="_blank" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        </a>
+        <a href="#" target="_blank" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.13C5.12 19.56 12 19.56 12 19.56s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.43z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+        </a>
+        <a href="#" target="_blank" aria-label="SoundCloud">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M1.175 12.225c-.051 0-.094.046-.101.1l-.233 2.154.233 2.105c.007.058.05.098.101.098.05 0 .09-.04.099-.098l.255-2.105-.27-2.154c-.009-.06-.05-.1-.1-.1m-.899.828c-.06 0-.091.037-.104.094L0 14.479l.172 1.282c.013.06.045.094.104.094.057 0 .09-.038.104-.094l.2-1.282-.2-1.332c-.014-.057-.047-.094-.104-.094m1.8-1.156c-.063 0-.11.05-.116.11l-.213 2.451.213 2.36c.006.063.053.11.116.11.063 0 .109-.047.116-.11l.244-2.36-.244-2.45c-.007-.064-.053-.111-.116-.111m.899-.427c-.073 0-.126.058-.132.125l-.193 2.878.193 2.728c.006.071.059.125.132.125.072 0 .123-.054.132-.125l.217-2.728-.217-2.878c-.009-.067-.06-.125-.132-.125m.9-.235c-.082 0-.14.066-.148.14l-.174 3.113.174 2.86c.008.076.066.14.148.14.08 0 .138-.064.148-.14l.197-2.86-.197-3.113c-.01-.074-.068-.14-.148-.14m.9-.236c-.09 0-.154.073-.16.155l-.155 3.349.155 2.94c.006.084.07.155.16.155.088 0 .152-.071.16-.155l.175-2.94-.175-3.349c-.008-.082-.072-.155-.16-.155m.998-.146c-.1 0-.17.08-.176.168l-.135 3.495.135 2.993c.006.09.076.168.176.168.098 0 .168-.078.176-.168l.154-2.993-.154-3.495c-.008-.088-.078-.168-.176-.168m1.1-.198c-.11 0-.187.09-.193.183l-.117 3.693.117 3.024c.006.098.083.183.193.183.108 0 .183-.085.193-.183l.13-3.024-.13-3.693c-.01-.093-.085-.183-.193-.183m1.098-.134c-.12 0-.2.098-.207.197l-.098 3.827.098 3.05c.007.103.087.197.207.197.118 0 .198-.094.207-.197l.11-3.05-.11-3.827c-.009-.099-.089-.197-.207-.197m1.1-.088c-.13 0-.214.105-.22.21l-.078 3.915.079 3.066c.006.11.09.21.22.21.127 0 .21-.1.22-.21l.088-3.066-.089-3.914c-.009-.106-.092-.211-.22-.211m1.202-.02c-.14 0-.228.116-.234.226l-.063 3.934.064 3.076c.006.116.094.226.234.226.137 0 .225-.11.234-.226l.072-3.076-.072-3.934c-.009-.11-.097-.226-.234-.226m1.2.032c-.148 0-.24.122-.247.238l-.047 3.902.047 3.082c.007.12.1.238.248.238.146 0 .238-.118.247-.238l.053-3.082-.053-3.902c-.009-.116-.101-.238-.247-.238m1.302.05c-.09 0-.168.04-.217.106-.03.04-.047.09-.05.143l-.03 3.747.03 3.074c.004.06.02.11.05.15.05.065.127.107.218.107.088 0 .165-.04.215-.104.032-.04.05-.092.053-.153l.034-3.074-.034-3.747c-.003-.06-.02-.11-.053-.15-.05-.067-.127-.109-.216-.109m2.372-.384c-.193 0-.36.079-.474.21a.62.62 0 0 0-.152.378v.002l-.035 3.822.035 3.05a.627.627 0 0 0 .626.593c.33 0 .604-.252.627-.577v.003l.038-3.069-.038-3.838c-.016-.04-.027-.08-.044-.116a1.1 1.1 0 0 0-.193-.32 1.094 1.094 0 0 0-.39-.278m4.1-.497c-.227-.09-.474-.137-.73-.137-1.12 0-2.028.89-2.058 2.003v.004l-.002 2.588v.002c.03 1.112.938 2.001 2.06 2.001.556 0 1.06-.22 1.43-.578.371-.359.6-.858.6-1.41V13.12c0-1.094-.757-2.012-1.781-2.268m.614 4.678a.835.835 0 0 1-.834.834c-.46 0-.833-.374-.833-.834v-2.41a.834.834 0 0 1 .833-.832c.46 0 .834.372.834.833v2.41z"/></svg>
+        </a>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="js/main.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

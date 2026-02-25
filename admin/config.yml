@@ -1,0 +1,57 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - label: "About Me"
+        name: "about"
+        file: "_data/about.json"
+        fields:
+          - { label: "Your Name", name: "name", widget: "string" }
+          - { label: "Tagline", name: "tagline", widget: "string" }
+          - { label: "Bio Paragraph 1", name: "bio1", widget: "text" }
+          - { label: "Bio Paragraph 2", name: "bio2", widget: "text" }
+          - { label: "Bio Paragraph 3", name: "bio3", widget: "text" }
+          - { label: "Bio Paragraph 4", name: "bio4", widget: "text" }
+
+  - name: "sounds"
+    label: "Sounds / Mixes"
+    folder: "_data/sounds"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "YouTube Video ID", name: "video_id", widget: "string", hint: "Just the ID from the YouTube URL, e.g. dQw4w9WgXcQ" }
+      - { label: "Date", name: "date", widget: "date" }
+      - { label: "Duration", name: "duration", widget: "string", hint: "e.g. 1:02:34" }
+      - { label: "Genre", name: "genre", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Featured Mix?", name: "featured", widget: "boolean", default: false }
+
+  - name: "photos"
+    label: "Photos"
+    folder: "_data/photos"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Photo", name: "image", widget: "image" }
+      - { label: "Location", name: "location", widget: "string" }
+      - { label: "Date", name: "date", widget: "date" }
+
+  - name: "press"
+    label: "Press & Features"
+    folder: "_data/press"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Thumbnail", name: "thumbnail", widget: "image" }
+      - { label: "Article URL", name: "url", widget: "string" }
