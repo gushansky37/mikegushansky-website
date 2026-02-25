@@ -95,6 +95,12 @@
       var aboutData = results[0];
       var pressData = results[1];
 
+      // Update hero image from CMS
+      if (aboutData && aboutData.hero_image) {
+        var heroImg = document.querySelector('.me-hero img');
+        if (heroImg) heroImg.src = aboutData.hero_image;
+      }
+
       // Update bio paragraphs from CMS
       if (aboutData) {
         var bioDiv = document.querySelector('.me-content__bio');

@@ -15,6 +15,7 @@ collections:
         fields:
           - { label: "Your Name", name: "name", widget: "string" }
           - { label: "Tagline", name: "tagline", widget: "string" }
+          - { label: "Hero Photo", name: "hero_image", widget: "image", hint: "The large photo at the top of the Me page" }
           - { label: "Bio Paragraph 1", name: "bio1", widget: "text" }
           - { label: "Bio Paragraph 2", name: "bio2", widget: "text" }
           - { label: "Bio Paragraph 3", name: "bio3", widget: "text" }
