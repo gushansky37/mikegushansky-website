@@ -42,6 +42,8 @@ collections:
           - label: "Mixes"
             name: "mixes"
             widget: "list"
+            label_singular: "Mix"
+            summary: "{{fields.title}} — {{fields.genre}} ({{fields.duration}})"
             fields:
               - { label: "Title", name: "title", widget: "string" }
               - { label: "YouTube Video ID", name: "video_id", widget: "string", hint: "Just the ID, e.g. dQw4w9WgXcQ" }
@@ -56,6 +58,8 @@ collections:
           - label: "Photos"
             name: "photos"
             widget: "list"
+            label_singular: "Photo"
+            summary: "{{fields.title}} — {{fields.location}}"
             fields:
               - { label: "Title", name: "title", widget: "string" }
               - { label: "Photo", name: "image", widget: "image" }
@@ -70,6 +74,8 @@ collections:
           - label: "Press Items"
             name: "items"
             widget: "list"
+            label_singular: "Press Item"
+            summary: "{{fields.title}}"
             fields:
               - { label: "Title", name: "title", widget: "string" }
               - { label: "Description", name: "description", widget: "text" }
