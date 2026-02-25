@@ -19,6 +19,7 @@ collections:
           - { label: "Bio Paragraph 2", name: "bio2", widget: "text" }
           - { label: "Bio Paragraph 3", name: "bio3", widget: "text" }
           - { label: "Bio Paragraph 4", name: "bio4", widget: "text" }
+
       - label: "Sounds Page"
         name: "sounds_page"
         file: "_data/sounds-page.json"
@@ -33,38 +34,43 @@ collections:
           - { label: "Featured Mix Description", name: "featured_desc", widget: "text" }
           - { label: "Mix Section Heading", name: "section_heading", widget: "string" }
 
-  - name: "sounds"
-    label: "Sounds / Mixes"
-    folder: "_data/sounds"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "YouTube Video ID", name: "video_id", widget: "string", hint: "Just the ID from the YouTube URL, e.g. dQw4w9WgXcQ" }
-      - { label: "Date", name: "date", widget: "date" }
-      - { label: "Duration", name: "duration", widget: "string", hint: "e.g. 1:02:34" }
-      - { label: "Genre", name: "genre", widget: "string" }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Featured Mix?", name: "featured", widget: "boolean", default: false }
+      - label: "Mixes List"
+        name: "mixes_list"
+        file: "_data/sounds.json"
+        fields:
+          - label: "Mixes"
+            name: "mixes"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "YouTube Video ID", name: "video_id", widget: "string", hint: "Just the ID, e.g. dQw4w9WgXcQ" }
+              - { label: "Date", name: "date", widget: "string" }
+              - { label: "Duration", name: "duration", widget: "string", hint: "e.g. 1:02:34" }
+              - { label: "Genre", name: "genre", widget: "string" }
 
-  - name: "photos"
-    label: "Photos"
-    folder: "_data/photos"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Photo", name: "image", widget: "image" }
-      - { label: "Location", name: "location", widget: "string" }
-      - { label: "Date", name: "date", widget: "date" }
+      - label: "Photos"
+        name: "photos_list"
+        file: "_data/photos.json"
+        fields:
+          - label: "Photos"
+            name: "photos"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Photo", name: "image", widget: "image" }
+              - { label: "Location", name: "location", widget: "string" }
+              - { label: "Date", name: "date", widget: "string" }
+              - { label: "Show in Carousel?", name: "carousel", widget: "boolean", default: false, hint: "Turn on to feature this photo in the top carousel" }
 
-  - name: "press"
-    label: "Press & Features"
-    folder: "_data/press"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Thumbnail", name: "thumbnail", widget: "image" }
-      - { label: "Article URL", name: "url", widget: "string" }
+      - label: "Press & Features"
+        name: "press_list"
+        file: "_data/press.json"
+        fields:
+          - label: "Press Items"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Thumbnail", name: "thumbnail", widget: "image" }
+              - { label: "Article URL", name: "url", widget: "string" }

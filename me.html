@@ -108,7 +108,56 @@
 
   </div>
 
+  <script>window.__dynamicContent = true;</script>
   <script src="js/main.js"></script>
+  <script>
+    Promise.all([
+      fetch('/_data/about.json').then(function(r) { return r.ok ? r.json() : null; }).catch(function() { return null; }),
+      fetch('/_data/press.json').then(function(r) { return r.ok ? r.json() : null; }).catch(function() { return null; })
+    ]).then(function(results) {
+      var aboutData = results[0];
+      var pressData = results[1];
+
+      // Update bio paragraphs from CMS
+      if (aboutData) {
+        var bioDiv = document.querySelector('.me-content__bio');
+        if (bioDiv) {
+          var paragraphs = bioDiv.querySelectorAll('p');
+          if (aboutData.bio1 && paragraphs[0]) paragraphs[0].textContent = aboutData.bio1;
+          if (aboutData.bio2 && paragraphs[1]) paragraphs[1].textContent = aboutData.bio2;
+          if (aboutData.bio3 && paragraphs[2]) paragraphs[2].textContent = aboutData.bio3;
+          if (aboutData.bio4 && paragraphs[3]) paragraphs[3].textContent = aboutData.bio4;
+        }
+      }
+
+      // Render press cards from CMS
+      if (pressData && pressData.items && pressData.items.length > 0) {
+        var pressSection = document.querySelector('.me-press');
+        if (pressSection) {
+          // Remove existing press cards but keep the heading
+          var existingCards = pressSection.querySelectorAll('.press-card');
+          existingCards.forEach(function(card) { card.remove(); });
+
+          pressData.items.forEach(function(item) {
+            var card = document.createElement('a');
+            card.href = item.url || '#';
+            card.className = 'press-card';
+            card.target = '_blank';
+            card.innerHTML =
+              '<img src="' + escapeHTML(item.thumbnail) + '" alt="Article thumbnail" class="press-card__img">' +
+              '<div class="press-card__text">' +
+                '<h3 class="press-card__title">' + escapeHTML(item.title) + '</h3>' +
+                '<p class="press-card__desc">' + escapeHTML(item.description) + '</p>' +
+                '<span class="press-card__link">Read more &rarr;</span>' +
+              '</div>';
+            pressSection.appendChild(card);
+          });
+        }
+      }
+
+      if (window.initFadeIn) window.initFadeIn();
+    });
+  </script>
   <script>
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("init", user => {

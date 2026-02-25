@@ -2,125 +2,127 @@
    Mike Gushansky — Global JavaScript
    ========================================================================== */
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
 
   /* --- Fade-in on Scroll (IntersectionObserver) --- */
-  const fadeEls = document.querySelectorAll('.fade-in');
-  if (fadeEls.length) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    fadeEls.forEach(el => observer.observe(el));
-  }
+  window.initFadeIn = function() {
+    var fadeEls = document.querySelectorAll('.fade-in:not(.visible)');
+    if (fadeEls.length) {
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      fadeEls.forEach(function(el) { observer.observe(el); });
+    }
+  };
 
   /* --- Mobile Hamburger Menu --- */
-  const hamburger = document.querySelector('.hamburger');
-  const mobileMenu = document.querySelector('.mobile-menu');
+  var hamburger = document.querySelector('.hamburger');
+  var mobileMenu = document.querySelector('.mobile-menu');
   if (hamburger && mobileMenu) {
-    hamburger.addEventListener('click', () => {
+    hamburger.addEventListener('click', function() {
       hamburger.classList.toggle('active');
       mobileMenu.classList.toggle('active');
       document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
     });
   }
 
-  /* =======================================================================
-     PHOTOS PAGE — Carousel
-     ======================================================================= */
-  const carousel = document.querySelector('.carousel');
-  if (carousel) {
-    const track = carousel.querySelector('.carousel__track');
-    const slides = carousel.querySelectorAll('.carousel__slide');
-    const prevBtn = carousel.querySelector('.carousel__arrow--prev');
-    const nextBtn = carousel.querySelector('.carousel__arrow--next');
-    const dotsContainer = carousel.querySelector('.carousel__dots');
-    const dots = dotsContainer ? dotsContainer.querySelectorAll('.carousel__dot') : [];
-    let currentSlide = 0;
-    let autoAdvance;
-    const slideCount = slides.length;
+  /* --- Carousel --- */
+  window.initCarousel = function() {
+    if (window.__carouselInit) return;
+    var carousel = document.querySelector('.carousel');
+    if (!carousel) return;
+    var track = carousel.querySelector('.carousel__track');
+    var slides = carousel.querySelectorAll('.carousel__slide');
+    var prevBtn = carousel.querySelector('.carousel__arrow--prev');
+    var nextBtn = carousel.querySelector('.carousel__arrow--next');
+    var dotsContainer = carousel.querySelector('.carousel__dots');
+    var dots = dotsContainer ? dotsContainer.querySelectorAll('.carousel__dot') : [];
+    var currentSlide = 0;
+    var autoAdvance;
+    var slideCount = slides.length;
+    if (slideCount === 0) return;
+    window.__carouselInit = true;
 
     function goToSlide(index) {
       if (index < 0) index = slideCount - 1;
       if (index >= slideCount) index = 0;
       currentSlide = index;
-      track.style.transform = `translateX(-${currentSlide * 100}%)`;
-      dots.forEach((dot, i) => {
+      track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+      dots.forEach(function(dot, i) {
         dot.classList.toggle('carousel__dot--active', i === currentSlide);
       });
     }
 
     function startAutoAdvance() {
       stopAutoAdvance();
-      autoAdvance = setInterval(() => goToSlide(currentSlide + 1), 5000);
+      autoAdvance = setInterval(function() { goToSlide(currentSlide + 1); }, 5000);
     }
 
     function stopAutoAdvance() {
       if (autoAdvance) clearInterval(autoAdvance);
     }
 
-    if (prevBtn) prevBtn.addEventListener('click', () => { goToSlide(currentSlide - 1); startAutoAdvance(); });
-    if (nextBtn) nextBtn.addEventListener('click', () => { goToSlide(currentSlide + 1); startAutoAdvance(); });
+    if (prevBtn) prevBtn.addEventListener('click', function() { goToSlide(currentSlide - 1); startAutoAdvance(); });
+    if (nextBtn) nextBtn.addEventListener('click', function() { goToSlide(currentSlide + 1); startAutoAdvance(); });
 
-    dots.forEach((dot, i) => {
-      dot.addEventListener('click', () => { goToSlide(i); startAutoAdvance(); });
+    dots.forEach(function(dot, i) {
+      dot.addEventListener('click', function() { goToSlide(i); startAutoAdvance(); });
     });
 
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener('keydown', function(e) {
       if (document.querySelector('.lightbox.active')) return;
       if (e.key === 'ArrowLeft') { goToSlide(currentSlide - 1); startAutoAdvance(); }
       if (e.key === 'ArrowRight') { goToSlide(currentSlide + 1); startAutoAdvance(); }
     });
 
-    // Pause on hover
     carousel.addEventListener('mouseenter', stopAutoAdvance);
     carousel.addEventListener('mouseleave', startAutoAdvance);
-
     startAutoAdvance();
-  }
+  };
 
-  /* =======================================================================
-     PHOTOS PAGE — Gallery image lazy fade-in
-     ======================================================================= */
-  const galleryImages = document.querySelectorAll('.gallery__item img');
-  if (galleryImages.length) {
-    const imgObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+  /* --- Gallery Image Lazy Fade-in --- */
+  window.initGalleryImages = function() {
+    var galleryImages = document.querySelectorAll('.gallery__item img');
+    if (!galleryImages.length) return;
+    var imgObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
         if (entry.isIntersecting) {
-          const img = entry.target;
+          var img = entry.target;
           if (img.dataset.src) {
             img.src = img.dataset.src;
             img.removeAttribute('data-src');
           }
-          img.addEventListener('load', () => img.classList.add('loaded'), { once: true });
+          img.addEventListener('load', function() { img.classList.add('loaded'); }, { once: true });
           if (img.complete) img.classList.add('loaded');
           imgObserver.unobserve(img);
         }
       });
     }, { threshold: 0.05 });
-    galleryImages.forEach(img => imgObserver.observe(img));
-  }
+    galleryImages.forEach(function(img) { imgObserver.observe(img); });
+  };
 
-  /* =======================================================================
-     PHOTOS PAGE — Lightbox
-     ======================================================================= */
-  const lightbox = document.querySelector('.lightbox');
-  if (lightbox) {
-    const lightboxImg = lightbox.querySelector('.lightbox__img');
-    const closeBtn = lightbox.querySelector('.lightbox__close');
-    const prevArrow = lightbox.querySelector('.lightbox__arrow--prev');
-    const nextArrow = lightbox.querySelector('.lightbox__arrow--next');
-    const galleryItems = document.querySelectorAll('.gallery__item');
-    let lightboxIndex = 0;
+  /* --- Lightbox --- */
+  window.initLightbox = function() {
+    if (window.__lightboxInit) return;
+    var lightbox = document.querySelector('.lightbox');
+    if (!lightbox) return;
+    var lightboxImg = lightbox.querySelector('.lightbox__img');
+    var closeBtn = lightbox.querySelector('.lightbox__close');
+    var prevArrow = lightbox.querySelector('.lightbox__arrow--prev');
+    var nextArrow = lightbox.querySelector('.lightbox__arrow--next');
+    var galleryItems = document.querySelectorAll('.gallery__item');
+    if (!galleryItems.length) return;
+    window.__lightboxInit = true;
+    var lightboxIndex = 0;
 
-    const gallerySrcs = [];
-    galleryItems.forEach(item => {
-      const img = item.querySelector('img');
+    var gallerySrcs = [];
+    galleryItems.forEach(function(item) {
+      var img = item.querySelector('img');
       gallerySrcs.push(img.dataset.src || img.src);
     });
 
@@ -143,37 +145,39 @@ document.addEventListener('DOMContentLoaded', () => {
       lightboxImg.src = gallerySrcs[lightboxIndex];
     }
 
-    galleryItems.forEach((item, i) => {
-      item.addEventListener('click', () => openLightbox(i));
+    galleryItems.forEach(function(item, i) {
+      item.addEventListener('click', function() { openLightbox(i); });
     });
 
     closeBtn.addEventListener('click', closeLightbox);
-    prevArrow.addEventListener('click', () => lightboxNav(-1));
-    nextArrow.addEventListener('click', () => lightboxNav(1));
+    prevArrow.addEventListener('click', function() { lightboxNav(-1); });
+    nextArrow.addEventListener('click', function() { lightboxNav(1); });
 
-    lightbox.addEventListener('click', (e) => {
+    lightbox.addEventListener('click', function(e) {
       if (e.target === lightbox) closeLightbox();
     });
 
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener('keydown', function(e) {
       if (!lightbox.classList.contains('active')) return;
       if (e.key === 'Escape') closeLightbox();
       if (e.key === 'ArrowLeft') lightboxNav(-1);
       if (e.key === 'ArrowRight') lightboxNav(1);
     });
-  }
+  };
 
-  /* =======================================================================
-     SOUNDS PAGE — Mix Modal
-     ======================================================================= */
-  const mixModal = document.querySelector('.mix-modal');
-  if (mixModal) {
-    const modalEmbed = mixModal.querySelector('.mix-modal__embed');
-    const modalClose = mixModal.querySelector('.mix-modal__close');
-    const mixCards = document.querySelectorAll('.mix-card');
+  /* --- Mix Modal --- */
+  window.initMixModal = function() {
+    if (window.__mixModalInit) return;
+    var mixModal = document.querySelector('.mix-modal');
+    if (!mixModal) return;
+    var modalEmbed = mixModal.querySelector('.mix-modal__embed');
+    var modalClose = mixModal.querySelector('.mix-modal__close');
+    var mixCards = document.querySelectorAll('.mix-card');
+    if (!mixCards.length) return;
+    window.__mixModalInit = true;
 
     function openMixModal(videoId) {
-      modalEmbed.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+      modalEmbed.innerHTML = '<iframe src="https://www.youtube.com/embed/' + videoId + '?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
       mixModal.classList.add('active');
       document.body.style.overflow = 'hidden';
     }
@@ -184,45 +188,61 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.style.overflow = '';
     }
 
-    mixCards.forEach(card => {
-      card.addEventListener('click', () => {
-        const videoId = card.dataset.videoId;
+    mixCards.forEach(function(card) {
+      card.addEventListener('click', function() {
+        var videoId = card.dataset.videoId;
         if (videoId) openMixModal(videoId);
       });
     });
 
     modalClose.addEventListener('click', closeMixModal);
-    mixModal.addEventListener('click', (e) => {
+    mixModal.addEventListener('click', function(e) {
       if (e.target === mixModal) closeMixModal();
     });
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape' && mixModal.classList.contains('active')) closeMixModal();
     });
-  }
+  };
 
-  /* =======================================================================
-     CONTACT PAGE — Form Success
-     ======================================================================= */
-  const contactForm = document.querySelector('.contact-form');
+  /* --- Contact Form --- */
+  var contactForm = document.querySelector('.contact-form');
   if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', function(e) {
       e.preventDefault();
-      const formData = new FormData(contactForm);
-
+      var formData = new FormData(contactForm);
       fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams(formData).toString()
       })
-      .then(() => {
+      .then(function() {
         contactForm.style.display = 'none';
         document.getElementById('form-success').style.display = 'block';
       })
-      .catch(() => {
+      .catch(function() {
         contactForm.style.display = 'none';
         document.getElementById('form-success').style.display = 'block';
       });
     });
   }
 
+  /* --- Auto-init for static pages (skipped on dynamic pages) --- */
+  if (!window.__dynamicContent) {
+    window.initFadeIn();
+    window.initCarousel();
+    window.initGalleryImages();
+    window.initLightbox();
+    window.initMixModal();
+  } else {
+    window.initFadeIn();
+  }
+
 });
+
+/* --- Shared utility --- */
+window.escapeHTML = function(str) {
+  if (!str) return '';
+  var div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+};

@@ -1,0 +1,88 @@
+{
+  "photos": [
+    {
+      "title": "Golden Hour at the Harbor",
+      "image": "https://picsum.photos/seed/10/1600/900",
+      "location": "Tel Aviv, 2024",
+      "date": "2024",
+      "carousel": true
+    },
+    {
+      "title": "Rooftop Sessions",
+      "image": "https://picsum.photos/seed/11/1600/900",
+      "location": "Berlin, 2023",
+      "date": "2023",
+      "carousel": true
+    },
+    {
+      "title": "Street Light",
+      "image": "https://picsum.photos/seed/12/1600/900",
+      "location": "New York, 2024",
+      "date": "2024",
+      "carousel": true
+    },
+    {
+      "title": "After the Rain",
+      "image": "https://picsum.photos/seed/13/1600/900",
+      "location": "London, 2023",
+      "date": "2023",
+      "carousel": true
+    },
+    {
+      "title": "Desert Dust",
+      "image": "https://picsum.photos/seed/14/1600/900",
+      "location": "Negev, 2024",
+      "date": "2024",
+      "carousel": true
+    },
+    {
+      "title": "Late Night Vinyl",
+      "image": "https://picsum.photos/seed/15/1600/900",
+      "location": "Amsterdam, 2023",
+      "date": "2023",
+      "carousel": true
+    },
+    {
+      "title": "Untitled 7",
+      "image": "https://picsum.photos/seed/16/900/900",
+      "location": "",
+      "date": "",
+      "carousel": false
+    },
+    {
+      "title": "Untitled 8",
+      "image": "https://picsum.photos/seed/17/800/1100",
+      "location": "",
+      "date": "",
+      "carousel": false
+    },
+    {
+      "title": "Untitled 9",
+      "image": "https://picsum.photos/seed/18/1200/800",
+      "location": "",
+      "date": "",
+      "carousel": false
+    },
+    {
+      "title": "Untitled 10",
+      "image": "https://picsum.photos/seed/19/900/900",
+      "location": "",
+      "date": "",
+      "carousel": false
+    },
+    {
+      "title": "Untitled 11",
+      "image": "https://picsum.photos/seed/20/1200/800",
+      "location": "",
+      "date": "",
+      "carousel": false
+    },
+    {
+      "title": "Untitled 12",
+      "image": "https://picsum.photos/seed/21/800/1100",
+      "location": "",
+      "date": "",
+      "carousel": false
+    }
+  ]
+}

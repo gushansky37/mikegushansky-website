@@ -192,7 +192,71 @@
 
   </div>
 
+  <script>window.__dynamicContent = true;</script>
   <script src="js/main.js"></script>
+  <script>
+    fetch('/_data/photos.json').then(function(r) { return r.ok ? r.json() : null; }).catch(function() { return null; })
+    .then(function(data) {
+      if (!data || !data.photos || !data.photos.length) {
+        // Fallback: init with hardcoded HTML
+        if (window.initCarousel) window.initCarousel();
+        if (window.initGalleryImages) window.initGalleryImages();
+        if (window.initLightbox) window.initLightbox();
+        if (window.initFadeIn) window.initFadeIn();
+        return;
+      }
+
+      var photos = data.photos;
+      var carouselPhotos = photos.filter(function(p) { return p.carousel; });
+      var track = document.querySelector('.carousel__track');
+      var dotsContainer = document.querySelector('.carousel__dots');
+      var gallery = document.querySelector('.gallery');
+
+      // Render carousel slides
+      if (carouselPhotos.length && track) {
+        track.innerHTML = '';
+        carouselPhotos.forEach(function(photo) {
+          var slide = document.createElement('div');
+          slide.className = 'carousel__slide';
+          slide.innerHTML =
+            '<img src="' + escapeHTML(photo.image) + '" alt="Photograph by Mike Gushansky">' +
+            '<div class="carousel__caption">' +
+              '<div class="carousel__caption-title">' + escapeHTML(photo.title) + '</div>' +
+              (photo.location ? '<div class="carousel__caption-meta">' + escapeHTML(photo.location) + '</div>' : '') +
+            '</div>';
+          track.appendChild(slide);
+        });
+
+        // Render dots
+        if (dotsContainer) {
+          dotsContainer.innerHTML = '';
+          carouselPhotos.forEach(function(photo, i) {
+            var dot = document.createElement('button');
+            dot.className = 'carousel__dot' + (i === 0 ? ' carousel__dot--active' : '');
+            dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+            dotsContainer.appendChild(dot);
+          });
+        }
+      }
+
+      // Render gallery items (all photos)
+      if (gallery) {
+        gallery.innerHTML = '';
+        photos.forEach(function(photo) {
+          var item = document.createElement('div');
+          item.className = 'gallery__item';
+          item.innerHTML = '<img data-src="' + escapeHTML(photo.image) + '" alt="Photograph by Mike Gushansky">';
+          gallery.appendChild(item);
+        });
+      }
+
+      // Initialize interactive features after rendering
+      if (window.initCarousel) window.initCarousel();
+      if (window.initGalleryImages) window.initGalleryImages();
+      if (window.initLightbox) window.initLightbox();
+      if (window.initFadeIn) window.initFadeIn();
+    });
+  </script>
   <script>
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("init", user => {

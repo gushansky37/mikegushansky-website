@@ -1,0 +1,32 @@
+{
+  "mixes": [
+    {
+      "title": "Midnight in Marrakech",
+      "video_id": "dQw4w9WgXcQ",
+      "date": "Jan 2024",
+      "duration": "58:20",
+      "genre": "Afro House"
+    },
+    {
+      "title": "Berlin After Dark",
+      "video_id": "dQw4w9WgXcQ",
+      "date": "Nov 2023",
+      "duration": "1:24:10",
+      "genre": "Minimal Techno"
+    },
+    {
+      "title": "Rooftop Frequencies",
+      "video_id": "dQw4w9WgXcQ",
+      "date": "Sep 2023",
+      "duration": "1:02:34",
+      "genre": "Melodic House"
+    },
+    {
+      "title": "Desert Grooves",
+      "video_id": "dQw4w9WgXcQ",
+      "date": "Jul 2023",
+      "duration": "47:55",
+      "genre": "Organic House"
+    }
+  ]
+}

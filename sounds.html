@@ -142,26 +142,55 @@
 
   </div>
 
+  <script>window.__dynamicContent = true;</script>
   <script src="js/main.js"></script>
   <script>
-    // Load CMS-editable content for Sounds page
-    fetch('/_data/sounds-page.json')
-      .then(r => r.json())
-      .then(d => {
-        const el = s => document.querySelector(`[data-cms="${s}"]`);
-        if (d.title) el('title').textContent = d.title;
-        if (d.tagline) el('tagline').textContent = d.tagline;
-        if (d.featured_title) el('featured_title').textContent = d.featured_title;
-        if (d.featured_desc) el('featured_desc').textContent = d.featured_desc;
-        if (d.featured_genre && d.featured_date && d.featured_duration) {
-          el('featured_meta').textContent = d.featured_genre + ' \u00B7 ' + d.featured_date + ' \u00B7 ' + d.featured_duration;
+    Promise.all([
+      fetch('/_data/sounds-page.json').then(function(r) { return r.ok ? r.json() : null; }).catch(function() { return null; }),
+      fetch('/_data/sounds.json').then(function(r) { return r.ok ? r.json() : null; }).catch(function() { return null; })
+    ]).then(function(results) {
+      var pageData = results[0];
+      var mixesData = results[1];
+
+      // Update page text from CMS
+      if (pageData) {
+        var el = function(s) { return document.querySelector('[data-cms="' + s + '"]'); };
+        if (pageData.title) el('title').textContent = pageData.title;
+        if (pageData.tagline) el('tagline').textContent = pageData.tagline;
+        if (pageData.featured_title) el('featured_title').textContent = pageData.featured_title;
+        if (pageData.featured_desc) el('featured_desc').textContent = pageData.featured_desc;
+        if (pageData.featured_genre && pageData.featured_date && pageData.featured_duration) {
+          el('featured_meta').textContent = pageData.featured_genre + ' \u00B7 ' + pageData.featured_date + ' \u00B7 ' + pageData.featured_duration;
         }
-        if (d.featured_video_id) {
-          el('featured_iframe').src = 'https://www.youtube.com/embed/' + d.featured_video_id;
+        if (pageData.featured_video_id) {
+          el('featured_iframe').src = 'https://www.youtube.com/embed/' + pageData.featured_video_id;
         }
-        if (d.section_heading) el('section_heading').textContent = d.section_heading;
-      })
-      .catch(() => {});
+        if (pageData.section_heading) el('section_heading').textContent = pageData.section_heading;
+      }
+
+      // Render mix cards from CMS data
+      if (mixesData && mixesData.mixes && mixesData.mixes.length > 0) {
+        var grid = document.querySelector('.mix-grid');
+        grid.innerHTML = '';
+        mixesData.mixes.forEach(function(mix) {
+          var card = document.createElement('article');
+          card.className = 'mix-card fade-in';
+          card.dataset.videoId = mix.video_id;
+          card.innerHTML =
+            '<div class="mix-card__thumb">' +
+              '<img src="https://img.youtube.com/vi/' + escapeHTML(mix.video_id) + '/maxresdefault.jpg" alt="Mix thumbnail">' +
+            '</div>' +
+            '<h3 class="mix-card__title">' + escapeHTML(mix.title) + '</h3>' +
+            '<p class="mix-card__meta">' + escapeHTML(mix.date) + ' &middot; ' + escapeHTML(mix.duration) + '</p>' +
+            '<span class="mix-card__genre">' + escapeHTML(mix.genre) + '</span>';
+          grid.appendChild(card);
+        });
+      }
+
+      // Initialize interactive features after rendering
+      if (window.initMixModal) window.initMixModal();
+      if (window.initFadeIn) window.initFadeIn();
+    });
   </script>
   <script>
     if (window.netlifyIdentity) {
