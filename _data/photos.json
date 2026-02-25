@@ -6,7 +6,7 @@
     },
     {
       "image": "/images/uploads/---_00200.jpg",
-      "carousel": true
+      "carousel": false
     },
     {
       "image": "/images/uploads/---_00229.jpg",
@@ -14,19 +14,19 @@
     },
     {
       "image": "/images/uploads/---_00396.jpg",
-      "carousel": true
+      "carousel": false
     },
     {
       "image": "/images/uploads/000001650001.jpg",
-      "carousel": true
+      "carousel": false
     },
     {
       "image": "/images/uploads/000001650003.jpg",
-      "carousel": true
+      "carousel": false
     },
     {
       "image": "/images/uploads/000002860007.jpg",
-      "carousel": false
+      "carousel": true
     },
     {
       "image": "/images/uploads/000002860008.jpg",
@@ -58,7 +58,7 @@
     },
     {
       "image": "/images/uploads/000009610024.jpg",
-      "carousel": false
+      "carousel": true
     },
     {
       "image": "/images/uploads/000014310004.jpg",
@@ -78,7 +78,7 @@
     },
     {
       "image": "/images/uploads/000045240007.jpg",
-      "carousel": false
+      "carousel": true
     },
     {
       "image": "/images/uploads/000045250008.jpg",
@@ -122,7 +122,7 @@
     },
     {
       "image": "/images/uploads/11a_00223.jpg",
-      "carousel": false
+      "carousel": true
     },
     {
       "image": "/images/uploads/20a_00111.jpg",
@@ -134,7 +134,7 @@
     },
     {
       "image": "/images/uploads/img_1213.jpg",
-      "carousel": false
+      "carousel": true
     },
     {
       "image": "/images/uploads/img_2808.jpg",
