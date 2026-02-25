@@ -19,6 +19,19 @@ collections:
           - { label: "Bio Paragraph 2", name: "bio2", widget: "text" }
           - { label: "Bio Paragraph 3", name: "bio3", widget: "text" }
           - { label: "Bio Paragraph 4", name: "bio4", widget: "text" }
+      - label: "Sounds Page"
+        name: "sounds_page"
+        file: "_data/sounds-page.json"
+        fields:
+          - { label: "Page Title", name: "title", widget: "string" }
+          - { label: "Tagline", name: "tagline", widget: "string" }
+          - { label: "Featured Mix Title", name: "featured_title", widget: "string" }
+          - { label: "Featured Mix Video ID", name: "featured_video_id", widget: "string", hint: "YouTube video ID, e.g. dQw4w9WgXcQ" }
+          - { label: "Featured Mix Genre", name: "featured_genre", widget: "string" }
+          - { label: "Featured Mix Date", name: "featured_date", widget: "string" }
+          - { label: "Featured Mix Duration", name: "featured_duration", widget: "string" }
+          - { label: "Featured Mix Description", name: "featured_desc", widget: "text" }
+          - { label: "Mix Section Heading", name: "section_heading", widget: "string" }
 
   - name: "sounds"
     label: "Sounds / Mixes"

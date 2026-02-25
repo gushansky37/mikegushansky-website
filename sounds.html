@@ -44,8 +44,8 @@
       <!-- Page Header -->
       <div class="content-wrap">
         <header class="page-header fade-in">
-          <h1 class="page-header__title">Sounds</h1>
-          <p class="page-header__tagline">Mixes, sets, and sonic explorations from behind the decks.</p>
+          <h1 class="page-header__title" data-cms="title">Sounds</h1>
+          <p class="page-header__tagline" data-cms="tagline">Mixes, sets, and sonic explorations from behind the decks.</p>
         </header>
       </div>
 
@@ -54,12 +54,12 @@
         <section class="featured-mix fade-in">
           <!-- FEATURED MIX: replace VIDEO_ID in the src below -->
           <div class="featured-mix__embed">
-            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allow="encrypted-media" allowfullscreen title="Featured mix"></iframe>
+            <iframe data-cms="featured_iframe" src="https://www.youtube.com/embed/dQw4w9WgXcQ" allow="encrypted-media" allowfullscreen title="Featured mix"></iframe>
           </div>
           <div class="featured-mix__info">
-            <h2 class="featured-mix__title">Sunset Sessions Vol. 1</h2>
-            <p class="featured-mix__meta">Deep House &middot; March 2024 &middot; 1:12:45</p>
-            <p class="featured-mix__desc">A warm, rolling mix recorded live at sunset on the Mediterranean coast. Deep house grooves layered with organic textures and hypnotic rhythms. Perfect for golden hour.</p>
+            <h2 class="featured-mix__title" data-cms="featured_title">Sunset Sessions Vol. 1</h2>
+            <p class="featured-mix__meta" data-cms="featured_meta">Deep House &middot; March 2024 &middot; 1:12:45</p>
+            <p class="featured-mix__desc" data-cms="featured_desc">A warm, rolling mix recorded live at sunset on the Mediterranean coast. Deep house grooves layered with organic textures and hypnotic rhythms. Perfect for golden hour.</p>
           </div>
         </section>
       </div>
@@ -67,7 +67,7 @@
       <!-- Mix Grid -->
       <div class="content-wrap">
         <section class="section-padding">
-          <h2 class="mix-section__heading fade-in">Slab City</h2>
+          <h2 class="mix-section__heading fade-in" data-cms="section_heading">Slab City</h2>
           <div class="mix-grid">
 
             <!-- MIX CARD: replace VIDEO_ID in data-video-id and thumbnail src -->
@@ -143,6 +143,26 @@
   </div>
 
   <script src="js/main.js"></script>
+  <script>
+    // Load CMS-editable content for Sounds page
+    fetch('/_data/sounds-page.json')
+      .then(r => r.json())
+      .then(d => {
+        const el = s => document.querySelector(`[data-cms="${s}"]`);
+        if (d.title) el('title').textContent = d.title;
+        if (d.tagline) el('tagline').textContent = d.tagline;
+        if (d.featured_title) el('featured_title').textContent = d.featured_title;
+        if (d.featured_desc) el('featured_desc').textContent = d.featured_desc;
+        if (d.featured_genre && d.featured_date && d.featured_duration) {
+          el('featured_meta').textContent = d.featured_genre + ' \u00B7 ' + d.featured_date + ' \u00B7 ' + d.featured_duration;
+        }
+        if (d.featured_video_id) {
+          el('featured_iframe').src = 'https://www.youtube.com/embed/' + d.featured_video_id;
+        }
+        if (d.section_heading) el('section_heading').textContent = d.section_heading;
+      })
+      .catch(() => {});
+  </script>
   <script>
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("init", user => {
