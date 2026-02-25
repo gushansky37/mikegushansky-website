@@ -59,12 +59,9 @@ collections:
             name: "photos"
             widget: "list"
             label_singular: "Photo"
-            summary: "{{fields.title}} — {{fields.location}}"
+            summary: "Photo {{index}}"
             fields:
-              - { label: "Title", name: "title", widget: "string" }
               - { label: "Photo", name: "image", widget: "image" }
-              - { label: "Location", name: "location", widget: "string" }
-              - { label: "Date", name: "date", widget: "string" }
               - { label: "Show in Carousel?", name: "carousel", widget: "boolean", default: false, hint: "Turn on to feature this photo in the top carousel" }
 
       - label: "Press & Features"

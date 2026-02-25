@@ -116,12 +116,7 @@
         carouselPhotos.forEach(function(photo) {
           var slide = document.createElement('div');
           slide.className = 'carousel__slide';
-          slide.innerHTML =
-            '<img src="' + escapeHTML(photo.image) + '" alt="Photograph by Mike Gushansky">' +
-            '<div class="carousel__caption">' +
-              '<div class="carousel__caption-title">' + escapeHTML(photo.title) + '</div>' +
-              (photo.location ? '<div class="carousel__caption-meta">' + escapeHTML(photo.location) + '</div>' : '') +
-            '</div>';
+          slide.innerHTML = '<img src="' + escapeHTML(photo.image) + '" alt="Photograph by Mike Gushansky">';
           track.appendChild(slide);
         });
 
